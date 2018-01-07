@@ -1,0 +1,59 @@
+{
+  "name": "nuxt-env",
+  "version": "0.0.1",
+  "description": "Inject env vars for your Nuxt app at runtime",
+  "main": "index.js",
+  "repository": "https://github.com/samtgarson/nuxt-env",
+  "author": "samtgarson@gmail.com",
+  "license": "MIT",
+  "scripts": {
+    "test": "yarn test:unit && yarn test:lint",
+    "test:unit": "NODE_ENV=test jest",
+    "test:lint": "eslint --ignore-path .gitignore  --ignore-pattern '/doc/**' ."
+  },
+  "babel": {
+    "env": {
+      "test": {
+        "presets": [
+          "env"
+        ],
+        "plugins": [
+          "transform-object-rest-spread"
+        ]
+      }
+    }
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "babel-jest": "^21.0.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "docdash": "^0.4.0",
+    "eslint": "^4.6.1",
+    "eslint-config-samtgarson": "^0.0.8",
+    "jest": "^21.0.1",
+    "jsdoc": "^3.5.5",
+    "nuxt": "^1.0.0-rc11",
+    "request-promise-native": "^1.0.5",
+    "retell": "^1.1.1"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/test/support/setup.js"
+    ],
+    "testMatch": [
+      "**/test/**/*.js"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "<rootDir>/test/support/"
+    ],
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "^@/(.+)": "<rootDir>/$1"
+    },
+    "testEnvironment": "node"
+  }
+}

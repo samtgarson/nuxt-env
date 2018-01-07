@@ -1,0 +1,5 @@
+node_modules
+.nuxt
+/yarn-error.log
+doc
+/doc.html
