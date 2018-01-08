@@ -1,11 +1,10 @@
+import { Nuxt, Builder } from 'nuxt'
+import request from 'request-promise-native'
+import config from './support/app/nuxt.config'
+
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000
 process.env.PORT = process.env.PORT || 5060
 process.env.NODE_ENV = 'production'
-
-const { Nuxt, Builder } = require('nuxt')
-const request = require('request-promise-native')
-
-const config = require('./support/app/nuxt.config')
 
 const url = path => `http://localhost:${process.env.PORT}${path}`
 const get = path => request({
