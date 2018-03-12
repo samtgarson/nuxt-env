@@ -27,7 +27,8 @@ beforeEach(() => {
 describe('Plugin', () => {
   describe('client side', () => {
     beforeEach(() => {
-      context.isClient = true
+      process.client = true
+      process.server = !process.client
       plugin(context, inject)
     })
 
@@ -40,7 +41,8 @@ describe('Plugin', () => {
     const reqEnv = { test2: 'baz', test3: 'foobar' }
 
     beforeEach(() => {
-      context.isClient = false
+      process.client = false
+      process.server = !process.client
     })
 
     describe('in a normal case', () => {
