@@ -2028,9 +2028,9 @@ eslint-config-samtgarson@^0.0.8:
     eslint-plugin-node "^5.1.1"
     eslint-plugin-promise "^3.4.1"
 
-"eslint-import-resolver-jest@git+https://github.com/samtgarson/eslint-import-resolver-jest.git":
+"eslint-import-resolver-jest@https://github.com/samtgarson/eslint-import-resolver-jest":
   version "1.0.0"
-  resolved "git+https://github.com/samtgarson/eslint-import-resolver-jest.git#e4a454c30fa45b86a7219852576eb1bd37721756"
+  resolved "https://github.com/samtgarson/eslint-import-resolver-jest#e4a454c30fa45b86a7219852576eb1bd37721756"
   dependencies:
     find-root "^1.0.0"
     micromatch "^2.3.11"
