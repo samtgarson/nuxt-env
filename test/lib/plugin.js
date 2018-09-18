@@ -35,6 +35,17 @@ describe('Plugin', () => {
     it('injects the env', () => {
       expect(inject).toHaveBeenCalledWith('env', context.nuxtState.env)
     })
+
+    describe('in a SPA', () => {
+      beforeEach(() => {
+        delete context.nuxtState
+        plugin(context, inject)
+      })
+
+      it('injects the env', () => {
+        expect(inject).toHaveBeenCalledWith('env', context.env)
+      })
+    })
   })
 
   describe('server side', () => {

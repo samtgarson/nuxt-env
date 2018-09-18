@@ -1,6 +1,6 @@
 {
   "name": "nuxt-env",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Inject env vars for your Nuxt app at runtime",
   "main": "index.js",
   "repository": "https://github.com/samtgarson/nuxt-env",
