@@ -30,9 +30,12 @@ yarn add nuxt-env
 // nuxt.config.js
 
 // Tell nuxt-env which env vars you want to inject
-modules: ['nuxt-env', {
-  keys: ['TEST_VALUE']
-}]
+modules: [
+  'other-nuxt-module',
+  ['nuxt-env', {
+    keys: ['TEST_VALUE']
+  }]
+]
 ```
 
 
