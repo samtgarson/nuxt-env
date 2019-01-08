@@ -1,12 +1,13 @@
 const path = require('path')
-const middleware = require('./lib/middleware')
 
 module.exports = function NuxtEnv ({ keys }) {
-  this.addServerMiddleware(middleware(keys))
-
-  const src = path.resolve(__dirname, 'lib/plugin.js')
+  const src = path.resolve(__dirname, 'lib/plugin.template.js')
   this.addPlugin({
     src,
-    filename: 'nuxt-env'
+    filename: 'nuxt-env',
+    options: {
+      keys,
+      env: process.env
+    }
   })
 }
