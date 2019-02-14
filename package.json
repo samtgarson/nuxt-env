@@ -1,13 +1,14 @@
 {
   "name": "nuxt-env",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Inject env vars for your Nuxt app at runtime",
   "main": "index.js",
   "repository": "https://github.com/samtgarson/nuxt-env",
   "author": "samtgarson@gmail.com",
   "license": "MIT",
   "scripts": {
-    "test": "yarn test:unit && yarn test:lint",
+    "dev": "nuxt -c ./test/support/app/nuxt.config.js",
+    "test": "npm run test:unit && npm run test:lint",
     "test:unit": "NODE_ENV=test jest --coverage",
     "test:lint": "eslint --ignore-path .gitignore  --ignore-pattern '/doc/**' ."
   },
@@ -33,6 +34,7 @@
     "eslint-config-samtgarson": "^0.0.8",
     "jest": "^21.0.1",
     "jsdoc": "^3.5.5",
+    "jsdom": "^13.2.0",
     "nuxt": "^1.0.0-rc11",
     "request-promise-native": "^1.0.5",
     "retell": "^1.1.1"
