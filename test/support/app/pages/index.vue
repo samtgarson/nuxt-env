@@ -1,13 +1,13 @@
 <template>
-<div>
-    <p>TEST_ENV: {{ testEnv }}</p>
-</div>
+<h1>Hello!</h1>
 </template>
 
 <script>
 export default {
-  computed: {
-    testEnv () { return this.$env.TEST_ENV }
-  },
+  asyncData ({ app }) {
+    return {
+      serverValues: app.$env
+    }
+  }
 }
 </script>

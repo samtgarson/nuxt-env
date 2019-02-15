@@ -10,7 +10,7 @@ Nuxt currently provides a very [handy way of injecting environment variables](ht
 
 This module allows you to read environment variables server side—at runtime—and inject them into your app, meaning your Nuxt bundle is decoupled from your environment variables.
 
-⚠️ **WARNING**: As with the `config.env` option in Nuxt config, environment variables used in `nuxt-env` are exposed client side, so don't use it for storing secrets! ⚠️ 
+⚠️ **WARNING**: As with the `config.env` option in Nuxt config, environment variables used in `nuxt-env` are exposed client side, so if you store secrets use the `secret` config option. Read more below. ⚠️ 
 
 ## Usage
 
@@ -33,10 +33,38 @@ yarn add nuxt-env
 modules: [
   'other-nuxt-module',
   ['nuxt-env', {
-    keys: ['TEST_VALUE']
+    keys: [
+      'TEST_ENV_VAR', // Basic usage—equivalent of { key: 'TEST_ENV_VAR' }
+      { key: 'OTHER_ENV_VAR', default: 'defaultValue' } // Specify a default value
+      { key: 'THIRD_ENV_VAR', secret: true } // Only inject the var server side
+      { key: 'THIRD_ENV_VAR', name: 'MY_ENV_VAR' } // Rename the variable
+    ]
   }]
 ]
 ```
+
+#### Options
+
+Env vars can be injected in a basic way, just by specifying a string in the `keys` option.
+When the provided var is an object, it can have the following attributes:
+
+##### `key`
+> required
+
+The name of the environment variable by which it can be accessed in `process.env`
+
+##### `default`
+
+A default value for the env var in case it's not present in `process.env`.
+
+##### `secret`
+> default: `false`
+
+When true, this key will only be present server side.
+
+##### `name`
+
+Change the name of the env var that gets injected. e.g.: `{ key: 'API_URL', name: 'API_ENDPOINT' }` will read `process.env.API_URL` and add it as `$env.API_ENDPOINT`
 
 
 ### Use in your application

@@ -16,7 +16,12 @@ const originalContext = {
 const expectedEnv = {
   test1: 'foo', // from the config env
   test2: 'baz', // from config env, overwritten by nuxt-env
-  test3: 'foobar' // from nuxt-env
+  test3: 'foobar' // from our module
+}
+
+const expectedClientEnv = {
+  test1: 'foo', // from the config env
+  test2: 'blork' // from config env, overwritten by nuxt-env
 }
 
 beforeEach(() => {
@@ -28,7 +33,7 @@ describe('Plugin', () => {
   describe('client side', () => {
     beforeEach(() => {
       process.client = true
-      process.server = !process.client
+      process.server = false
       plugin(context, inject)
     })
 
@@ -42,14 +47,17 @@ describe('Plugin', () => {
         plugin(context, inject)
       })
 
-      it('injects the env', () => {
+      it('injects the nuxt env', () => {
         expect(inject).toHaveBeenCalledWith('env', context.env)
       })
     })
   })
 
   describe('server side', () => {
-    const reqEnv = { test2: 'baz', test3: 'foobar' }
+    const req = {
+      env: { test2: 'baz', test3: 'foobar' },
+      clientEnv: { test2: 'blork' }
+    }
 
     beforeEach(() => {
       process.client = false
@@ -58,7 +66,7 @@ describe('Plugin', () => {
 
     describe('in a normal case', () => {
       beforeEach(() => {
-        context.req = { env: reqEnv }
+        context.req = req
         plugin(context, inject)
       })
 
@@ -85,7 +93,7 @@ describe('Plugin', () => {
 
         hookCallback(context)
 
-        expect(context.nuxtState.env).toMatchObject(expectedEnv)
+        expect(context.nuxtState.env).toMatchObject(expectedClientEnv)
       })
     })
 

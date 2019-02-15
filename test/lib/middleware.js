@@ -7,16 +7,58 @@ describe('Middleware', () => {
     expect(middleware).toBeInstanceOf(Function)
   })
 
-  it('adds env to the request', () => {
-    const expectedKey = 'TEST_VALUE'
+  describe('for different types of key', () => {
+    let req
+    const name = 'TEST_VALUE'
+    const key = 'TEST_KEY'
     const expectedValue = 'test value'
-    const req = { env: {} }
-    const middleware = Middleware([expectedKey])
-    process.env[expectedKey] = expectedValue
 
-    middleware(req, {})
+    beforeEach(() => {
+      req = { env: {}, clientEnv: {} }
+    })
 
-    expect(req.env).toHaveProperty(expectedKey, expectedValue)
+    afterEach(() => {
+      delete process.env[key]
+    })
+
+    it('adds env to the request', () => {
+      const middleware = Middleware([{ name: key, key }])
+      process.env[key] = expectedValue
+
+      middleware(req, {})
+
+      expect(req.env).toHaveProperty(key, expectedValue)
+      expect(req.clientEnv).toHaveProperty(key, expectedValue)
+    })
+
+    it('handles a new name', () => {
+      const middleware = Middleware([{ name, key }])
+      process.env[key] = expectedValue
+
+      middleware(req, {})
+
+      expect(req.env).toHaveProperty(name, expectedValue)
+      expect(req.clientEnv).toHaveProperty(name, expectedValue)
+    })
+
+    it('handles a secret var', () => {
+      const middleware = Middleware([{ name, key, secret: true }])
+      process.env[key] = expectedValue
+
+      middleware(req, {})
+
+      expect(req.env).toHaveProperty(name, expectedValue)
+      expect(req.clientEnv).not.toHaveProperty(name, expectedValue)
+    })
+
+    it('handles a default value', () => {
+      const middleware = Middleware([{ name, key, default: 'default' }])
+
+      middleware(req, {})
+
+      expect(req.env).toHaveProperty(name, 'default')
+      expect(req.clientEnv).toHaveProperty(name, 'default')
+    })
   })
 
   it('calls next when its finished', () => {
