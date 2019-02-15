@@ -26,7 +26,7 @@ describe('Module', () => {
     expect(FakeModule.addPlugin).toHaveBeenCalled()
     const { calls: { 0: { 0: calls } } } = FakeModule.addPlugin.mock
 
-    expect(calls.filename).toEqual('nuxt-env')
+    expect(calls.fileName).toEqual('nuxt-env.js')
     expect(calls.src).toMatch(/lib\/plugin\.js/)
   })
 })

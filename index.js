@@ -13,6 +13,6 @@ module.exports = function NuxtEnv ({ keys }) {
   const src = path.resolve(__dirname, 'lib/plugin.js')
   this.addPlugin({
     src,
-    filename: 'nuxt-env'
+    fileName: 'nuxt-env.js'
   })
 }
