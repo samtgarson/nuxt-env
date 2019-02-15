@@ -37,7 +37,7 @@ modules: [
       'TEST_ENV_VAR', // Basic usage—equivalent of { key: 'TEST_ENV_VAR' }
       { key: 'OTHER_ENV_VAR', default: 'defaultValue' } // Specify a default value
       { key: 'THIRD_ENV_VAR', secret: true } // Only inject the var server side
-      { key: 'THIRD_ENV_VAR', name: 'MY_ENV_VAR' } // Rename the variable
+      { key: 'ANOTHER_ENV_VAR', name: 'MY_ENV_VAR' } // Rename the variable
     ]
   }]
 ]
@@ -107,16 +107,16 @@ export const mutations = {
 ## Develop
 
 ```bash
-# Forlk the repo
-git clone git@github.com:your_username/nuxt-env.git
+# First fork the repo
+git clone git@github.com:your-username/nuxt-env.git
 cd nuxt-env
-yarn
-yarn test
+npm i
+npm run test
 
 # To use while developing other apps:
-yarn link
+npm link
 cd ../my-other-app
-yarn link nuxt-env
+npm link "nuxt-env"
 ```
 
 ### Contributing
