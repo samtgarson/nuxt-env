@@ -34,9 +34,9 @@ modules: [
   'other-nuxt-module',
   ['nuxt-env', {
     keys: [
-      'TEST_ENV_VAR', // Basic usage—equivalent of { key: 'TEST_ENV_VAR' }
-      { key: 'OTHER_ENV_VAR', default: 'defaultValue' } // Specify a default value
-      { key: 'THIRD_ENV_VAR', secret: true } // Only inject the var server side
+      'TEST_ENV_VAR', // Basic usage—equivalent of { key: 'TEST_ENV_VAR' },
+      { key: 'OTHER_ENV_VAR', default: 'defaultValue' }, // Specify a default value
+      { key: 'THIRD_ENV_VAR', secret: true }, // Only inject the var server side
       { key: 'ANOTHER_ENV_VAR', name: 'MY_ENV_VAR' } // Rename the variable
     ]
   }]
