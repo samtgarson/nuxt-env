@@ -7,7 +7,11 @@ const transform = keys => keys.map(key => typeof key === 'string'
 )
 
 module.exports = function NuxtEnv ({ keys }) {
-  const transformedKeys = transform(keys)
+  const { nuxtenv: topLevelConf } = this.options
+  const topLevelKeys = topLevelConf ? topLevelConf.keys : []
+  const keysToTransform = [...keys, ...topLevelKeys]
+
+  const transformedKeys = transform(keysToTransform)
   this.addServerMiddleware(middleware(transformedKeys))
 
   const src = path.resolve(__dirname, 'lib/plugin.js')
