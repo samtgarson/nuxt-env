@@ -7,9 +7,8 @@ const transform = keys => keys.map(key => typeof key === 'string'
 )
 
 module.exports = function NuxtEnv ({ keys }) {
-  const { nuxtenv: topLevelConf } = this.options
-  const topLevelKeys = topLevelConf ? topLevelConf.keys : []
-  const keysToTransform = [...keys, ...topLevelKeys]
+  const { nuxtEnv: topLevelConf = { keys: [] } } = this.options
+  const keysToTransform = [...keys, ...topLevelConf.keys]
 
   const transformedKeys = transform(keysToTransform)
   this.addServerMiddleware(middleware(transformedKeys))
