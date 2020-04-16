@@ -16,7 +16,7 @@ module.exports = {
       ]
     }]
   ],
-  nuxtenv: {
+  nuxtEnv: {
     keys: [
       { key: 'ENV_6' },
       { key: 'ENV_7', secret: true },
