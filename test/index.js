@@ -6,7 +6,7 @@ const FakeModule = {
   addServerMiddleware: jest.fn(),
   addPlugin: jest.fn(),
   options: {
-    nuxtenv: {
+    nuxtEnv: {
       keys: [
         'TOPLEVEL_TEST_ENV'
       ]
