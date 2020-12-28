@@ -4,7 +4,7 @@ module.exports = {
   render: {
     resourceHints: false
   },
-  env: { NUXT_VAL: 5 },
+  env: { NUXT_VAL: 9 },
   modules: [
     ['@@/index.js', {
       keys: [
@@ -15,5 +15,13 @@ module.exports = {
         { key: 'ENV_5', default: 'default' }
       ]
     }]
-  ]
+  ],
+  nuxtEnv: {
+    keys: [
+      { key: 'ENV_6' },
+      { key: 'ENV_7', secret: true },
+      { key: 'ENV_8', name: 'MY_TOPLEVEL_ENV' },
+      { key: 'ENV_9', default: 'default' }
+    ]
+  }
 }

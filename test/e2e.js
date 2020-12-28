@@ -16,7 +16,8 @@ const get = path => request({
 
 let nuxt
 
-[1, 2, 3, 4].forEach(i => {
+// 5 and 9 are not in the array because we want to test that the "default" value is set
+[1, 2, 3, 4, 6, 7, 8].forEach(i => {
   process.env[`ENV_${i}`] = i
 })
 
@@ -34,9 +35,9 @@ describe('Prod', () => {
     const { body } = await get('/')
 
     // We render the server values to the page to validate them
-    expect(body).toContain('"serverValues":{"NUXT_VAL":5,"ENV_1":"1","ENV_2":"2","ENV_3":"3","MY_ENV":"4","ENV_5":"default"')
+    expect(body).toContain('"serverValues":{"NUXT_VAL":9,"ENV_1":"1","ENV_2":"2","ENV_3":"3","MY_ENV":"4","ENV_5":"default","ENV_6":"6","ENV_7":"7","MY_TOPLEVEL_ENV":"8","ENV_9":"default"')
 
     // The NUXT_STATE prints out the `app.$env` value
-    expect(body).toContain('"env":{"NUXT_VAL":5,"ENV_1":"1","ENV_2":"2","MY_ENV":"4","ENV_5":"default"}')
+    expect(body).toContain('"env":{"NUXT_VAL":9,"ENV_1":"1","ENV_2":"2","MY_ENV":"4","ENV_5":"default","ENV_6":"6","MY_TOPLEVEL_ENV":"8","ENV_9":"default"}')
   })
 })

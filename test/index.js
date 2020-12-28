@@ -4,7 +4,14 @@ jest.mock('@/lib/middleware', () => jest.fn(() => 'middleware result'))
 
 const FakeModule = {
   addServerMiddleware: jest.fn(),
-  addPlugin: jest.fn()
+  addPlugin: jest.fn(),
+  options: {
+    nuxtEnv: {
+      keys: [
+        'TOPLEVEL_TEST_ENV'
+      ]
+    }
+  }
 }
 
 const subject = module.bind(FakeModule)
