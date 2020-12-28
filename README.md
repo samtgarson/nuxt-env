@@ -4,6 +4,13 @@
 
 [![CircleCI](https://circleci.com/gh/samtgarson/nuxt-env.svg?style=svg)](https://circleci.com/gh/samtgarson/nuxt-env)
 
+---
+
+### 🚨🛑 WARNING 🛑🚨
+[Runtime Config](https://nuxtjs.org/docs/2.x/directory-structure/nuxt-config#runtimeconfig) has been released in Nuxt.js and solves the problem this package was solving, so this package has been is deprecated and will not be receiving any further updates _(There is some discussion in [this issue](https://github.com/nuxt/nuxt.js/issues/5100) in the Nuxt.js repo)_.
+
+---
+
 ## Why
 
 Nuxt currently provides a very [handy way of injecting environment variables](https://nuxtjs.org/api/configuration-env) which uses webpack substitution to inject your env vars at build time. This works most of the time, but if your build process is environment-agnostic (e.g. if you build a Docker image on CI and use the same image for staging and production), you end up with a result which has the environment baked into it (meaning that in our example, the docker image would be coupled to the environment it was built in).
