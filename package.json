@@ -34,7 +34,7 @@
     "eslint-config-samtgarson": "^0.0.8",
     "jest": "^21.0.1",
     "jsdoc": "^3.5.5",
-    "jsdom": "^13.2.0",
+    "jsdom": "^16.5.0",
     "nuxt": "^1.0.0-rc11",
     "request-promise-native": "^1.0.5",
     "retell": "^1.1.1"
